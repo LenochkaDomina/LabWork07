@@ -8,8 +8,8 @@ int main()
 {
 	cout << "413 Domina Olena Variant 10" << endl;
 	{
-		double SumN, b = 1.0, q, x = 0.5;
-		SumN = b;
+		double sum, b = 1.0, q, x = 0.5;
+		sum = b;
 
 		cout << "Calculating the sum of n = 5 elements (x = Const)" << endl;
 		for (int n = 0; n < 4; ++n)
@@ -17,35 +17,41 @@ int main()
 			q = (-1) * pow(x, 2) * (2 * pow(n + 1, 2) + 1) / ((2 * pow(n, 2) + 1) * (2 * n + 2) * (2 * n + 1));
 			b *= q;
 			//cout << b << endl;
-			SumN += b;
+			sum += b;
 
 		}
-		cout << "Sum = " << SumN << endl;
+		cout << "Sum = " << sum << endl;
 	}
 
 	{
-		int n = 0;
-		double Sum, b = 1.0, q, x = 0.4;
-		Sum = b;
-
 		cout << "Calculating the sum while elements are bigger than 0.0001 and x from 0.4 to 1.6" << endl;
 
-		do
+		for (double x = 0.4; x <= 1.6; x += 0.3)
 		{
-			q = (-1) * pow(x + 0.3, 2 * n + 2) * (2 * pow(n + 1, 2) + 1) / ((2 * pow(n, 2) + 1) * (2 * n + 2) * (2 * n + 1) * pow(x, 2 * n));
-			b *= q;
-			//cout << b << endl;
-			Sum += b;
-
-			x += 0.3;
-			n++;
-		} while (abs(b) >= 0.0001f && x <= 1.3);
-
-		cout << "Sum = "
-			<< fixed
-			<< setprecision(4)
-			<< Sum
-			<< endl;
+			int n = 0;
+			double b = 1.0, sum, q;
+			sum = b;
+		
+			while (abs(b) >= 0.0001f)
+			{
+				q = (-1) * pow(x, 2) * (2 * pow(n + 1, 2) + 1) / ((2 * pow(n, 2) + 1) * (2 * n + 2) * (2 * n + 1));
+				b *= q;
+				//cout << b << endl;
+				sum += b;
+		
+				n++;
+			}
+		
+			cout << "x = " 
+				<< fixed
+				<< setprecision(1)
+				<< x
+				<< " Sum = "
+				<< fixed
+				<< setprecision(4)
+				<< sum
+				<< endl;
+		}
 	}
 	system("pause");
 	return 0;
